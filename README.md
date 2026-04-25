@@ -1,7 +1,9 @@
 # Products Web Application
 ### By HarelK
 
-Instead of using traditional local setups like XAMPP or manual server configuration, this project uses a modern cloud-based architecture in order to eliminate local environment setup & enable fast review.
+In-order to deliver the project easily, i deployed it using Vercel.
+For that, I used Next.js as the main framework, and Supabase as the database and backend service.
+UI components by [https://ui.shadcn.com/](shadnc/ui)
 
 ## Main Technologies used
 - Next.js & React
@@ -20,20 +22,21 @@ The system includes:
 
 ---
 
-In-order to deliver the project easily, i deployed it using Vercel.
-For that, I used Next.js as the main framework, and Supabase as the database and backend service.
-UI components by [https://ui.shadcn.com/](shadnc/ui)
-
----
-
 ## Database Structure
 
-Table: `Products`
+SupaBase Table: `Products`
 
 | ID | Name | Price |
 |------|------|-------------|
 
-Insert function _______________
+## SQL Method
+The project requirements specified that any database could be used as long as the interaction is handled via SQL queries.
+To fulfill this requirement I implemented PostgreSQL functions (RPC) on the backend, ensuring that all data operations are executed through native SQL. 
+<dropdown> ### For Fetching Data </dropdown>
+_File Path: app/page.tsx line 10_
+```
+  const { data } = await supabase.rpc("fn_get_all_products", {})
+```
 
 ---
 
