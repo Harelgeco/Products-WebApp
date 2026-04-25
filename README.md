@@ -29,10 +29,10 @@ SupaBase Table: `Products`
 | ID | Name | Price |
 |------|------|-------------|
 
-## SQL Method
+## SQL Query Method:
 The project requirements specified that any database could be used as long as the interaction is handled via SQL queries.
 To fulfill this requirement I implemented PostgreSQL functions on the backend, and triggered it using the supabase client. 
-Further Specification Linked - [https://supabase.com/docs/reference/javascript/select](Fetching) & [https://supabase.com/docs/reference/javascript/insert](Inserting)
+Further Specification Linked - [fetching Data](https://supabase.com/docs/reference/javascript/select) & [Inserting Data](https://supabase.com/docs/reference/javascript/insert)
 
 
 <details>
@@ -56,19 +56,32 @@ $$ LANGUAGE sql;
 <details>
   <summary>Inserting Data</summary>
   
+  File Path: _app/Add_Products/page.tsx line 25_
+  ```
+    const { error: rpcError } = await supabase.rpc("secure_insert_product", {
+      p_name: name.trim(),
+      p_price: Number(price),
+    })
+```
+This line triggers another SQL supabase funciton that retrieves data, rather than sending a raw query from the browser...
+As another layer of security against SQL injection i used a pre-defined function(rpc) so the query logic is locked on the server.
+Also the frontend never sees the table structure or the raw `select` statement.
+
+And the Supabase function:
+```
+RETURNS void
+LANGUAGE SQL
+SECURITY DEFINER
+AS $$
+  INSERT INTO "Products" ("Name", "Price")
+  VALUES (trim(p_name), p_price);
+$$;
+```
+
 </details>
 
 
 
----
-
-## Security
-
-The project uses the Supabase client in a controlled way.
-
-Additionally:
-- Database access is handled through secure API calls
-- Row Level Security (RLS) can be enabled in Supabase if required
 
 
 
