@@ -1,7 +1,7 @@
 # Products Web Application
 #### By HarelK
 
-## Accessed through: [products-web-app-rust.vercel.app](https://products-web-app-rust.vercel.app/)
+## Project Link: [products-web-app-rust.vercel.app](https://products-web-app-rust.vercel.app/)
 
 
 In-order to deliver the project easily, i deployed it using Vercel.
