@@ -84,7 +84,10 @@ $$;
 </details>
 
 
+---
+If you wish to run the application locally using Next.js, follow this steps:
 
-
-
+1. Install dependencies: `npm install`
+2. Run the development server: `npm run dev`
+3. Open in browser: `http://localhost:3000`
 
