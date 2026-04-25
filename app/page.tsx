@@ -4,8 +4,12 @@ import { columns } from "@/components/columns"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
+export const dynamic = "force-dynamic"
+
 export default async function Page() {
-  const { data } = await supabase.from("Products").select("*")
+  const { data } = await supabase
+    .from("Products")
+    .select("*")
 
   return (
     <div className="container mx-auto py-10">
