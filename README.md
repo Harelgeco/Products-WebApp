@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Products Web Application
+By HarelK
+---
 
-## Getting Started
+## Main Technologies used
+- Next.js
+- Supabase
+- React
+- SQL
+- Vercel
 
-First, run the development server:
+  
+The system includes:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 1. Product View&Search Page
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Product Insert Page
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+Next.js is the main framework used in this project.
+Supabase is used as the database and backend service.
+In-order to deliver the project easily i deployed it using Vercel.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Database Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Table: `Products`
 
-## Deploy on Vercel
+| ID | Name | Price |
+|------|------|-------------|
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Insert function _______________
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Security
+
+The project uses the Supabase client in a controlled way.
+
+Additionally:
+- Database access is handled through secure API calls
+- Row Level Security (RLS) can be enabled in Supabase if required
+
+---
+
+Instead of using traditional local setups like XAMPP or manual server configuration, this project uses a modern cloud-based architecture in order to eliminate local environment setup & enable fast review.
+
+
