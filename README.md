@@ -33,7 +33,7 @@ SupaBase Table: `Products`
 The project requirements specified that any database could be used as long as the interaction is handled via SQL queries.
 To fulfill this requirement I implemented PostgreSQL functions (RPC) on the backend, ensuring that all data operations are executed through native SQL. 
 
-<dropdown>### For Fetching Data</dropdown>
+<summary>For Fetching Data</summary>
 _File Path: app/page.tsx line 10_
 ```
   const { data } = await supabase.rpc("fn_get_all_products", {})
