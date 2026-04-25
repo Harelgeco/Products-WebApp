@@ -21,7 +21,6 @@ export default function AddProduct() {
     if (!name) return setError("Name is required")
     if (Number(price) < 0) return setError("Price must be positive")
 
-    // Raw SQL insert via REST API
     const sqlQuery = `INSERT INTO "Products" ("Name", "Price") VALUES ('${name.trim().replace(/'/g, "''")}', ${Number(price)})`
 
     const response = await fetch(
