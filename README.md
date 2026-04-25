@@ -1,6 +1,5 @@
 # Products Web Application
-By HarelK
----
+###By HarelK
 
 ## Main Technologies used
 - Next.js
