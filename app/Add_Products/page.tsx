@@ -21,18 +21,29 @@ export default function AddProduct() {
     if (!name) return setError("Name is required")
     if (Number(price) < 0) return setError("Price must be positive")
 
-    const { error } = await supabase.from("Products").insert([
-      {
-        Name: name.trim(),
-        Price: Number(price),
-      },
-    ])
+    // Raw SQL insert via REST API
+    const sqlQuery = `INSERT INTO "Products" ("Name", "Price") VALUES ('${name.trim().replace(/'/g, "''")}', ${Number(price)})`
 
-    if (error) {
-      if (error.message.includes("unique")) {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/rpc/exec_sql`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({ query: sqlQuery }),
+      }
+    )
+
+    const errorMsg = response.ok ? null : await response.text()
+
+    if (errorMsg) {
+      if (errorMsg.includes("unique") || errorMsg.includes("duplicate")) {
         setError("Product already exists")
       } else {
-        setError(error.message)
+        setError(errorMsg)
       }
     } else {
       setName("")
