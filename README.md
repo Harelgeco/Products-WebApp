@@ -3,7 +3,7 @@
 
 In-order to deliver the project easily, i deployed it using Vercel.
 For that, I used Next.js as the main framework, and Supabase as the database and backend service.
-UI components by [https://ui.shadcn.com/](shadnc/ui)
+UI components by [shadnc/ui](https://ui.shadcn.com/)
 
 ## Main Technologies used
 - Next.js & React
