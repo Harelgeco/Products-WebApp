@@ -21,28 +21,17 @@ export default function AddProduct() {
     if (!name) return setError("Name is required")
     if (Number(price) < 0) return setError("Price must be positive")
 
-    const sqlQuery = `INSERT INTO "Products" ("Name", "Price") VALUES ('${name.trim().replace(/'/g, "''")}', ${Number(price)})`
+    // SQL call secured by the RLS policy
+    const { error: rpcError } = await supabase.rpc("secure_insert_product", {
+      p_name: name.trim(),
+      p_price: Number(price),
+    })
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/rpc/exec_sql`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}`,
-        },
-        body: JSON.stringify({ query: sqlQuery }),
-      }
-    )
-
-    const errorMsg = response.ok ? null : await response.text()
-
-    if (errorMsg) {
-      if (errorMsg.includes("unique") || errorMsg.includes("duplicate")) {
+    if (rpcError) {
+      if (rpcError.message.includes("unique") || rpcError.message.includes("duplicate")) {
         setError("Product already exists")
       } else {
-        setError(errorMsg)
+        setError(rpcError.message)
       }
     } else {
       setName("")

@@ -7,9 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 export const dynamic = "force-dynamic"
 
 export default async function Page() {
-  const { data } = await supabase
-    .from("Products")
-    .select("*")
+  const { data } = await supabase.rpc("fn_get_all_products", {})
 
   return (
     <div className="container mx-auto py-10">
