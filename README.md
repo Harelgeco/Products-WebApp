@@ -1,5 +1,8 @@
 # Products Web Application
-### By HarelK
+#### By HarelK
+
+## Accessed through: [products-web-app-rust.vercel.app](https://products-web-app-rust.vercel.app/)
+
 
 In-order to deliver the project easily, i deployed it using Vercel.
 For that, I used Next.js as the main framework, and Supabase as the database and backend service.
